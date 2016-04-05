@@ -7,8 +7,6 @@ import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.junit.Test;
 
-import com.github.leichtundkross.java8.datetime.WithJodaTime;
-
 public class WithJodaTimeTest {
 
 	private WithJodaTime time = new WithJodaTime();
