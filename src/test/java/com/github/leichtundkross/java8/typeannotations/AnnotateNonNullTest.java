@@ -9,7 +9,7 @@ public class AnnotateNonNullTest {
 		new AnnotateNonNull().acceptAnyButNotNull("hello");
 	}
 
-	@Test
+	@Test(expected = NullPointerException.class)
 	public void acceptAnyButNotNull_NPE() {
 		// this issue should be found using findbugs
 		new AnnotateNonNull().acceptAnyButNotNull(null);
