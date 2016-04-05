@@ -9,7 +9,10 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class AlbumService {
+import com.github.leichtundkross.java8.streams.model.Album;
+import com.github.leichtundkross.java8.streams.model.Track;
+
+public class Streams {
 
 	public List<Album> findAlbumNamesHavingTracksRatedFourOrHigherSortedByName(Collection<Album> albumsToSearch) {
 		List<Album> favs = new ArrayList<>();

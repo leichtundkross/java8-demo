@@ -1,4 +1,4 @@
-package com.github.leichtundkross.java8.streams;
+package com.github.leichtundkross.java8.streams.model;
 
 import java.util.ArrayList;
 import java.util.Collection;

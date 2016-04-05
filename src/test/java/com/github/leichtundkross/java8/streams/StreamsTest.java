@@ -8,9 +8,12 @@ import java.util.List;
 
 import org.junit.Test;
 
-public class AlbumServiceTest {
+import com.github.leichtundkross.java8.streams.model.Album;
+import com.github.leichtundkross.java8.streams.model.Track;
 
-	private AlbumService service = new AlbumService();
+public class StreamsTest {
+
+	private Streams service = new Streams();
 
 	@Test
 	public void findAlbumNamesHavingTracksRatedFourOrHigherSortedByName() {
