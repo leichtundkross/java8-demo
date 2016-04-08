@@ -3,11 +3,13 @@ package com.github.leichtundkross.java8.datetime;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.Period;
+import java.time.LocalTime;
 import java.time.format.TextStyle;
 import java.util.Locale;
 
 public class WithJava8 {
+
+	private static final LocalTime NO_TIME_PART = LocalTime.of(0, 0, 0);
 
 	public boolean isAfterPayDay(LocalDateTime datetime) {
 		if (datetime.getMonthValue() == 2) {
@@ -17,14 +19,12 @@ public class WithJava8 {
 		return datetime.getDayOfMonth() > 28;
 	}
 
-	public Period daysToNewYear(LocalDate fromDate) {
-		// use Period for date operations
+	public Duration daysToNewYear(LocalDate fromDate) {
 		LocalDate newYear = fromDate.plusYears(1).withDayOfYear(1);
-		return Period.between(fromDate, newYear);
+		return Duration.between(LocalDateTime.of(fromDate, NO_TIME_PART), LocalDateTime.of(newYear, NO_TIME_PART));
 	}
 
 	public boolean isRentalOverdue(LocalDateTime datetimeRented) {
-		// use Duration for datetime operations
 		Duration rentalPeriod = Duration.ofDays(2).plus(Duration.ofHours(12));
 		return datetimeRented.plus(rentalPeriod).isBefore(LocalDateTime.now());
 	}

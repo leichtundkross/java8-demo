@@ -23,7 +23,6 @@ public class WithJodaTime {
 	}
 
 	public boolean isRentalOverdue(DateTime datetimeRented) {
-		// use Period for both, date and datetime operations
 		Period rentalPeriod = new Period().withDays(2).withHours(12);
 		return datetimeRented.plus(rentalPeriod).isBeforeNow();
 	}

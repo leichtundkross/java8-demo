@@ -2,9 +2,9 @@ package com.github.leichtundkross.java8.datetime;
 
 import static org.junit.Assert.assertEquals;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.Period;
 
 import org.junit.Test;
 
@@ -20,7 +20,7 @@ public class WithJava8Test {
 
 	@Test
 	public void daysToNewYear() {
-		assertEquals(Period.ofMonths(8).withDays(27), time.daysToNewYear(LocalDate.of(2016, 4, 5)));
+		assertEquals(Duration.ofDays(271), time.daysToNewYear(LocalDate.of(2016, 4, 5)));
 	}
 
 	@Test
