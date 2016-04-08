@@ -6,8 +6,6 @@ import org.junit.Test;
 
 public class VersionServiceTest {
 
-	// ------------------------------------------
-
 	@Test
 	public void getUSBVersion() {
 		Computer computer = createComputer();
@@ -18,10 +16,10 @@ public class VersionServiceTest {
 	}
 
 	@Test
-	public void getUSBVersion_Java8() {
-		ComputerWithJava8 computer = createComputerWithJava8();
+	public void getUSBVersionWithJava8() {
+		Computer computer = createComputer();
 
-		String usbVersion = new VersionService().getUSBVersion(computer);
+		String usbVersion = new VersionService().getUSBVersionWithJava8(computer);
 
 		assertEquals("3.0", usbVersion);
 	}
@@ -38,32 +36,42 @@ public class VersionServiceTest {
 	}
 
 	@Test
-	public void supportsUSB30_Java8() {
-		ComputerWithJava8 computer = createComputerWithJava8();
+	public void supportsUSB30_usbNull() {
+		Computer computer = createComputer();
+		computer.getSoundcard().setUsb(null);
 
 		boolean supportsUSB30 = new VersionService().supportsUSB30(computer);
+
+		assertEquals(false, supportsUSB30);
+	}
+
+	@Test
+	public void supportsUSB30WithJava8() {
+		Computer computer = createComputer();
+
+		boolean supportsUSB30 = new VersionService().supportsUSB30WithJava8(computer);
 
 		assertEquals(true, supportsUSB30);
 	}
 
+	@Test
+	public void supportsUSB30WithJava8_usbNull() {
+		Computer computer = createComputer();
+		computer.getSoundcard().setUsb(null);
+
+		boolean supportsUSB30 = new VersionService().supportsUSB30(computer);
+
+		assertEquals(false, supportsUSB30);
+	}
+
 	// ------------------------------------------
 
-	private Computer createComputer() {
+	private static Computer createComputer() {
 		USB usb = new USB();
 		usb.setVersion("3.0");
 		Soundcard soundcard = new Soundcard();
 		soundcard.setUsb(usb);
 		Computer computer = new Computer();
-		computer.setSoundcard(soundcard);
-		return computer;
-	}
-
-	private ComputerWithJava8 createComputerWithJava8() {
-		USB usb = new USB();
-		usb.setVersion("3.0");
-		SoundcardWithJava8 soundcard = new SoundcardWithJava8();
-		soundcard.setUsb(usb);
-		ComputerWithJava8 computer = new ComputerWithJava8();
 		computer.setSoundcard(soundcard);
 		return computer;
 	}

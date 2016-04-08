@@ -19,9 +19,9 @@ public class VersionService {
 		return version;
 	}
 
-	public String getUSBVersion(ComputerWithJava8 computer) {
-		String version = computer.getSoundcard() //
-				.flatMap(SoundcardWithJava8::getUsb) //
+	public String getUSBVersionWithJava8(Computer computer) {
+		String version = computer.getSoundcardNullSafe() //
+				.flatMap(Soundcard::getUsbNullSafe) //
 				.map(USB::getVersion) //
 				.orElse(VERSION_UNKNOWN);
 
@@ -44,11 +44,11 @@ public class VersionService {
 		return supportsUSB30;
 	}
 
-	public boolean supportsUSB30(ComputerWithJava8 computer) {
-		boolean supportsUSB30 = computer.getSoundcard() //
-				.flatMap(SoundcardWithJava8::getUsb) //
-				.filter(usb -> "3.0".equals(usb.getVersion())) //
-				.isPresent() ? true : false;
+	public boolean supportsUSB30WithJava8(Computer computer) {
+		boolean supportsUSB30 = computer.getSoundcardNullSafe() //
+				.flatMap(Soundcard::getUsbNullSafe) //
+				.map(usb -> "3.0".equals(usb.getVersion())) //
+				.isPresent();
 
 		return supportsUSB30;
 	}
