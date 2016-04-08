@@ -1,4 +1,4 @@
-package com.github.leichtundkross.java8.optional;
+package com.github.leichtundkross.java8.optional.model;
 
 public class USB {
 

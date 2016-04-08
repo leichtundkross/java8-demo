@@ -1,5 +1,9 @@
 package com.github.leichtundkross.java8.optional;
 
+import com.github.leichtundkross.java8.optional.model.Computer;
+import com.github.leichtundkross.java8.optional.model.Soundcard;
+import com.github.leichtundkross.java8.optional.model.USB;
+
 public class VersionService {
 
 	private static final String VERSION_3_0 = "3.0";

@@ -4,6 +4,10 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import com.github.leichtundkross.java8.optional.model.Computer;
+import com.github.leichtundkross.java8.optional.model.Soundcard;
+import com.github.leichtundkross.java8.optional.model.USB;
+
 public class VersionServiceTest {
 
 	@Test

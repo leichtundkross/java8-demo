@@ -1,4 +1,6 @@
-package com.github.leichtundkross.java8.optional;
+package com.github.leichtundkross.java8.optional.model;
+
+import java.util.Optional;
 
 public class Computer {
 
@@ -6,6 +8,10 @@ public class Computer {
 
 	public Soundcard getSoundcard() {
 		return soundcard;
+	}
+
+	public Optional<Soundcard> getSoundcardNullSafe() {
+		return Optional.ofNullable(soundcard);
 	}
 
 	public void setSoundcard(Soundcard soundcard) {
