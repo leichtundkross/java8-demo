@@ -5,27 +5,29 @@ import java.util.stream.Stream;
 
 import org.junit.Test;
 
-public class ReuseStreamsTest {
+public class StreamSupplierTest {
+
+	private StreamSupplier supplier = new StreamSupplier();
 
 	@Test(expected = IllegalStateException.class)
 	public void reuseAStrem() {
-		Stream<String> stream = Stream.of("d2", "a2", "b1", "b3", "c");
+		Stream<String> stream = supplier.createStream();
 
-		// ok
+		// first terminal operation on a stream: ok
 		stream.anyMatch(s -> true);
 
-		// exception
+		// another terminal operation on a stream: exception
 		stream.noneMatch(s -> true);
 	}
 
 	@Test
 	public void reuseAStremWithSupplier() {
-		Supplier<Stream<String>> streamSupplier = () -> Stream.of("d2", "a2", "b1", "b3", "c");
+		Supplier<Stream<String>> streamSupplier = supplier.createStreamSupplier();
 
-		// ok
+		// calling get() on the supplier creates a new stream
 		streamSupplier.get().anyMatch(s -> true);
 
-		// ok
+		// calling get() again creates another stream
 		streamSupplier.get().noneMatch(s -> true);
 	}
 }

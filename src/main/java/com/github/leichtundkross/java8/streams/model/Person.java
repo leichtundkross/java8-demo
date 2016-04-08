@@ -34,4 +34,9 @@ public class Person {
 	public List<Person> getChildren() {
 		return children;
 	}
+
+	@Override
+	public String toString() {
+		return "Person [name=" + name + ", age=" + age + ", children=" + children + "]";
+	}
 }

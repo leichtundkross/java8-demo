@@ -1,12 +1,11 @@
 package com.github.leichtundkross.java8.streams;
 
-import static java.util.Comparator.comparing;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import com.github.leichtundkross.java8.streams.model.Album;
@@ -42,8 +41,12 @@ public class Streams {
 
 	public List<Album> findAlbumNamesHavingTracksRatedFourOrHigherSortedByNameWithJava8(Collection<Album> albumsToSearch) {
 		return albumsToSearch.stream() //
-				.filter(a -> a.getTracks().stream().anyMatch(t -> (t.getRating() >= 4))) //
-				.sorted(comparing(a -> a.getName())) //
+				.filter(album -> album.getTracks().stream().anyMatch(checkRatingFor(4))) //
+				.sorted(Comparator.comparing(album -> album.getName())) //
 				.collect(Collectors.toList());
+	}
+
+	private Predicate<? super Track> checkRatingFor(int minimumRating) {
+		return track -> track.getRating() >= minimumRating;
 	}
 }

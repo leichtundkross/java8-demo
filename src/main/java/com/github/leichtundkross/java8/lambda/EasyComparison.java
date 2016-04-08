@@ -10,7 +10,7 @@ public class EasyComparison {
 
 			@Override
 			public int compare(String s1, String s2) {
-				return val1.compareTo(val2);
+				return s1.compareTo(s2);
 			}
 		};
 

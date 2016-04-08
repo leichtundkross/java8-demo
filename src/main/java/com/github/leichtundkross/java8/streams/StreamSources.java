@@ -19,4 +19,8 @@ public class StreamSources {
 	public Stream<Integer> empty() {
 		return Stream.empty();
 	}
+
+	public Stream<Integer> concat() {
+		return Stream.concat(Stream.of(1), customGenerator());
+	}
 }

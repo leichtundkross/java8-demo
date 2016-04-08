@@ -22,10 +22,19 @@ public class Reduce {
 		return mothers //
 				.stream() //
 				// reduce creates a new Person that will be 'aggregated' for all stream elements
-				.reduce(new Person("Charlie", 50, new ArrayList<>()), (c, m) -> {
-					c.getChildren().addAll(m.getChildren());
-					return c;
+				.reduce(new Person("Charlie", 50, new ArrayList<>()), (charlie, mother) -> {
+					charlie.getChildren().addAll(mother.getChildren());
+					return charlie;
 				}) //
 				.getChildren();
+	}
+
+	public List<Person> getCharliesChildren_SolveWithoutReduce(List<Person> mothers) {
+		final Person charlie = new Person("Charlie", 50, new ArrayList<>());
+		mothers //
+				.stream() //
+				.forEach(mother -> charlie.getChildren().addAll(mother.getChildren()));
+
+		return charlie.getChildren();
 	}
 }
