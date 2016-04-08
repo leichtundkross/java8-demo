@@ -11,7 +11,13 @@ public class AnnotateNonNullTest {
 
 	@Test(expected = NullPointerException.class)
 	public void acceptAnyButNotNull_NPE() {
-		// this issue should be found using findbugs
-		new AnnotateNonNull().acceptAnyButNotNull(null);
+		passNullInMethodCall();
+	}
+
+	private void passNullInMethodCall() {
+		// this issue should be found using findbugs:
+		// Null passed for non-null parameter of AnnotateNonNull.acceptAnyButNotNull(String)
+		String s = null;
+		new AnnotateNonNull().acceptAnyButNotNull(s);
 	}
 }

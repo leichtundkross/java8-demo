@@ -8,7 +8,7 @@ import org.junit.Test;
 
 public class StringHelperTest {
 
-	private StringHelper printer = new StringHelper();
+	private StringHelper stringHelper = new StringHelper();
 
 	@Test
 	public void getLength_innerClass() {
@@ -19,7 +19,7 @@ public class StringHelperTest {
 				.append("this ") //
 				.append("string?");
 
-		int length = printer.getLength(new Supplier<String>() {
+		int length = stringHelper.getLength(new Supplier<String>() {
 
 			@Override
 			public String get() {
@@ -39,7 +39,7 @@ public class StringHelperTest {
 				.append("this ") //
 				.append("string?");
 
-		int length = printer.getLength(() -> builder.toString());
+		int length = stringHelper.getLength(() -> builder.toString());
 
 		assertEquals(24, length);
 	}
@@ -54,7 +54,7 @@ public class StringHelperTest {
 				.append("string?");
 
 		// bound non-static method, expect objectName::instanceMethodName
-		int length = printer.getLength(builder::toString);
+		int length = stringHelper.getLength(builder::toString);
 
 		assertEquals(24, length);
 	}
@@ -69,7 +69,7 @@ public class StringHelperTest {
 				.append("string?");
 
 		// unbound non-static method, expect className::instanceMethodName
-		int length = printer.getLength(StringBuilder::toString, builder);
+		int length = stringHelper.getLength(StringBuilder::toString, builder);
 
 		assertEquals(24, length);
 	}
@@ -77,7 +77,7 @@ public class StringHelperTest {
 	@Test
 	public void getLength_constructorMethodReferenz() {
 		// Constructor, expect className::new
-		int length = printer.getLength(String::new);
+		int length = stringHelper.getLength(String::new);
 
 		assertEquals(0, length);
 	}
