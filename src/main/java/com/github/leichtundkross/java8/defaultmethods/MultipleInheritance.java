@@ -2,10 +2,18 @@ package com.github.leichtundkross.java8.defaultmethods;
 
 public class MultipleInheritance implements Interface1, Interface2 {
 
+	/**
+	 * We need to override {@link #sayHello()} since method is inherited twice (from {@link Interface1} and {@link Interface2}). This
+	 * concrete implementation solves multiple inheritance.
+	 */
 	@Override
 	public String sayHello() {
-		// we need to override method sayHello to resolve method ambiguity
-		// if we do not override this method, this class cannot be compiled
+		return "MultipleInheritance: Hello";
+	}
+
+	@Override
+	public String toString() {
+		// if we want wo call inherited method sayHello(), we need to add prefix Interface1. or Interface2. when calling super:
 		return Interface1.super.sayHello();
 	}
 }
